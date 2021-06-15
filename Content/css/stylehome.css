@@ -1,0 +1,9 @@
+﻿@media screen and (max-width: 767px){
+    #ul{
+        display:flex;
+        justify-content:flex-start;
+
+    }
+  
+}
+

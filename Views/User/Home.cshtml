@@ -1,0 +1,232 @@
+﻿@using System.Data;
+@using System.Data.SqlClient;
+@using LinkedIn.Models
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@{
+    ViewBag.Title = "Home";
+}</title>
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/stylehome.css" media='screen and (max-width: 767px)' rel="stylesheet" />
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/jquery.js"></script>
+</head>
+<body>
+    <div class="container-fluid" style="background-color:#f3f2ef">
+        <div class="header">
+            <div class="row" id="main" style="height:62px;">
+                <div class="col-2 logo" style="padding-top: 16px; display:flex;justify-content:center; ">
+                    <img src="~/Content/Images/home-logo.svg" style="height:40px;width:40px;" />
+                </div>
+                <div class="col-10 ui" style="padding-left: 0px;">
+
+                    <nav>
+                        <ul id="ul kl">
+                            <a href="/user/home"><li><img src="~/Content/Images/nav-home.svg" /><a href="/user/home" style="display:block;text-decoration:none;color:black;">Home</a></li></a>
+                            <a href="#"> <li><img src="~/Content/Images/nav-jobs.svg" /><a style="display:block">Jobs</a></li></a>
+                            <a href="#">   <li><img src="~/Content/Images/nav-network.svg" /><a style="display:block">Network</a></li></a>
+                            <a href="#">  <li><img src="~/Content/Images/nav-messaging.svg" /><a style="display:block">Message</a></li></a>
+                            <a href="#"> <li><img src="~/Content/Images/nav-notifications.svg" /><a style="display:block">Notification</a></li></a>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            </div>
+        <div class="nik" style="width: 100%; background-color: #f3f2ef" >
+            <div class="row row2" style="width: 100%; justify-content: center; background-color: #f3f2ef">
+            <p><span style="font-size: 15px; font-weight: bold;">Develop new skills - </span><span style="font-size:15px;font-weight:bold;"> Millions of members use LinkedIn Learning. Unlock your free access today.</span></p>
+            </div>
+            <div class="row timeline pl-2 pr-2" style="width: 100%; display: flex; justify-content: center; background-color: #f3f2ef">
+                <div class="col-lg-2 d-none d-lg-block" style="background: white; border-radius: 10px; border: 1px solid #e0dfdc;height:400px;" id="co1">
+                    <div class="row">
+                        <div class="col-12 pro" style="padding:0px;height:150px;">
+                            <img src="~/Content/Profile/@ViewBag.image" alt="" style="height:70px;width:70px;border-radius:50%;" />
+                            <span style="font-size:18px;font-family:sans-serif;font-weight:400;margin-top:10px;" >@ViewBag.name</span>
+                            <span style="font-size:18px;font-family:sans-serif;font-weight:400;margin-top:10px;">@ViewBag.email</span>
+                        </div>
+                        <div class="col-12" style="padding: 0px; height: 150px; border: 1px solid #e0dfdc;border-radius:10px;padding-left:10px;padding-top:10px;">
+                            <span style="font-size: 14px; font-family: sans-serif; font-weight: 200;">Connections<p> Grow your network </p></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 ml-lg-5 " id="tutu">
+                    <form action="" enctype="multipart/form-data" id="myform">
+                        <div class="row" style="background: white; border-radius: 10px; border: 1px solid #e0dfdc;min-height:131px;">
+
+                            <div class="col-12" style="padding-top:10px;">
+                                <img src="~/Content/Profile/@ViewBag.image" alt="" style="height:50px;width:50px;border-radius:50%;float:left;" />
+                                <input type="file" style="width: 81%; height: 50px; margin-left: 30px; background: #ebebeb; border-radius: 20px; outline: none; border: 1px solid #808080; padding-left:30px;padding-top:7px;" id="pic">
+                                <input type="email" style="display:none;" value="@ViewBag.email" id="txtemail" />
+                                <input type="text" style="display:none;" value="@ViewBag.name" id="txtname" />
+                                <input type="text" style="display:none;" value="@ViewBag.image" id="txtimage" />
+                            </div>
+                            <div class="col-12" style="margin-top:10px;">
+                                <input type="text" style="width: 81%; height: 50px;background: #ebebeb; border-radius: 20px; outline: none; border: 1px solid #808080;" placeholder="Start a Post" id="msg">
+
+                                <input type="button" value="Post" style="width: 76px; height: 50px; background: #0a66c2; border-radius: 20px; outline: none; border:none" id="sub">
+         
+
+                            </div>
+
+
+                        </div>
+                    </form>
+                    <div id="oo"></div>
+                        @{
+                            //string query9 = "Select * from policeunitmaster";
+                            string query9 = "Select * from Tbl_post order by no DESC";
+                            ConnectionManager db = new ConnectionManager();
+                            DataTable dt = db.Display_All_Records(query9);
+                            if (dt.Rows.Count > 0)
+                            {
+
+                                for (int i = 0; i < dt.Rows.Count; i++)
+                                {
+
+
+                                    <div class="row" style="background: white; border-radius: 10px; border: 1px solid #e0dfdc; min-height: 131px; margin-top: 10px; ">
+
+
+                                        <div class="col-lg-12">
+                                            <img src="/Content/Profile/@dt.Rows[i]["pro_image_name"]" alt="" style="height:40px;width:40px;border-radius:50%;margin-top:10px;" />
+                                            <span style="font-size: 15px; font-family: sans-serif; font-weight: 600; text-overflow: ellipsis; color: #141414; ">@dt.Rows[i]["name"]</span>
+                                        </div>
+                                        <div class="col-lg-12" style="height:450px;padding:0px;padding-top:10px;">
+                                            <div class="col-12" style="height:12%;width:100%;"><span style="font-size:18px;font-family:sans-serif;font-weight:400;margin-top:10px;">@dt.Rows[i]["status"]</span></div>
+                                            <div class="col-12" style="height:78%;width:100%;padding:0px;">
+                                                <img src="/Content/Images/@dt.Rows[i]["post_image"]" style="height:100%;width:100%;" />
+                                            </div>
+                                            <div class="col-12" style="height:10%;width:100%;padding:0px;">
+                                                <ul>
+                                                    <a href="#">  <li id="ll"><img src="/Content/Images/like.png" id="ii" /> Like</li></a>
+                                                    <a href="#">  <li id="ll"><img src="/Content/Images/nav-messaging.svg" id="ii" /> Comment</li></a>
+                                                    <a href="#">  <li id="ll"><img src="/Content/Images/share.png" id="ii" /> Share</li></a>
+                                                </ul>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+                                }
+
+                            }
+                        }
+
+                    </div>
+                <div class="col-lg-2 ml-lg-5 co3 d-none d-lg-block" style="background: white; border-radius: 10px; border: 1px solid #e0dfdc;height:400px;">
+                    <div class="row">
+                        <div class="col-12 pro" style="padding:0px;height:150px;">
+                            <img src="~/Content/Profile/@ViewBag.image" alt="" style="height:70px;width:70px;border-radius:50%;" />
+                            <span style="font-size:18px;font-family:sans-serif;font-weight:400;margin-top:10px;">@ViewBag.name</span>
+                        </div>
+                        <div class="col-12" style="padding: 0px; height: 150px; border: 1px solid #e0dfdc;border-radius:10px;padding-left:10px;padding-top:10px;">
+                            <span style="font-size: 14px; font-family: sans-serif; font-weight: 200;">Connections<p> Grow your network </p></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .header{
+            position:fixed;
+            width:100%;
+            background:white;
+            left:0px;
+            z-index: 1;
+            
+            
+            
+        }
+         .header + .nik {
+                padding-top:80px;
+                position:absolute;
+            }
+        nav ul{
+            float:right;
+            text-align:center;
+
+
+        }
+            nav ul li {
+                display: inline-block;
+                line-height: 100%;
+                margin: 10px 15px;
+
+            }
+            nav ul li img{
+                height:30px;
+                width:30px;
+            }
+       .pro{
+           display:flex;
+           justify-content:center;
+           align-items:center;
+           flex-direction:column;
+
+       }
+       #ii{
+           height:30px;
+           width:30px;
+       }
+
+        #ll {
+            display: inline-block;
+            margin: 10px 56px 0px -28px;
+            font-size:15px;
+            font-weight:bold;
+            color:black;
+
+        }
+
+        
+    </style>
+    <script>
+        
+            $(document).ready(function () {
+
+                $("#sub").click(function () {
+                    var fd = new FormData();
+                    var files = $("#pic")[0].files[0];
+                    fd.append('file', files);
+                    fd.append('msg', $("#msg").val());
+                    fd.append('name', $("#txtname").val());
+                    fd.append('email', $("#txtemail").val());
+                    fd.append('profile', $("#txtimage").val());
+                    $.ajax({
+                        
+                        url: "/User/naya",
+                        type: "post",
+                        
+                        data: fd,
+                        processData: false,
+                        contentType:false,
+                        success: function (response) {
+                            //var v = "";
+                            $("#oo").html(response);
+                            $("#myform")[0].reset();
+
+                            //$.each(data, function () {
+                            //    //v +=data;
+                            //    //    v += "<tr><td></td><td></td><td></td><td>" + v1.Text + "</td></tr>";
+                            //    $("#uu").html(data);
+                            //});
+
+                        },
+                        failure: function () {
+
+                            alert('nhi huaa');
+                        }
+                    });
+                });
+            });
+       
+    </script>
+</body>
+</html>

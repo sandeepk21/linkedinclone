@@ -1,0 +1,198 @@
+﻿@model LinkedIn.Models.Login
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+@*@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+   
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.email)
+            @Html.ValidationMessageFor(model => model.email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.password)
+            @Html.ValidationMessageFor(model => model.password)
+        </div>
+
+        
+    
+}*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        @{
+            ViewBag.Title = "LinkedIn";
+        }
+    </title>
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" media='screen and (max-width: 767px)' rel="stylesheet" />
+    <script src="~/Content/js/bootstrap.js"></script>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="row" style="padding-top:10px;">
+            <div class="col-5 ss" >
+
+                <img src="~/Content/Images/login-logo.svg" alt="kuchh nhi "/>
+            </div>
+            
+            <div class="col-7 tt" style="">
+                <input type="button" value="Join Now" id="btn1" />
+                <input  type="button" value="LogIn" id="btn2"/>
+                
+            </div>
+        </div>
+        <div class="row" style=" padding-top:60px;">
+            <div class="col-lg-5">
+                <div class="row" style="padding-left:15px;">
+                <span style="font-size:56px; color: #2977c9;font-family:sans-serif;font-weight:200;">Welcome to your professional community</span></div>
+                <div class="row uu">
+                    <div class="row" style="width:80%;">
+                        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+
+
+
+
+
+                            @Html.TextBoxFor(model => model.email, new { @class = "panel-body", type = "email", placeholder = "Email or Phone", id = "input1" })
+
+
+
+
+
+                            @Html.TextBoxFor(model => model.password, new { @class = "panel-body", type = "password", placeholder = "Password", id = "input2" })
+                            @*<span><a href="#" id="ac">Forgot password?</a></span>*@
+
+                            <input type="submit" value="Login" id="input3" />
+
+
+
+
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 hero">
+                <img  src="~/Content/Images/login-hero.svg" alt=""/>
+            </div>
+        </div>
+    </div>
+    <style>
+        .container{
+            
+            min-height:100vh;
+            
+        }
+        .tt{
+            display:flex;
+            justify-content:flex-end;
+
+        }
+        #btn1 {
+            margin-right: 10px;
+           
+            border: none;
+            outline: none;
+            background: none;
+            width: 110px;
+            height: 40px;
+            font-size: 16px;
+            color: #808080;
+        }
+        
+            #btn1:hover {
+                background: #ebebeb;
+                border-radius: 4px;
+                color: black;
+            }
+        #btn2 {
+            border: 2px solid #317ecc  ;
+            outline: none;
+            background: none;
+            color: #317ecc;
+             width: 110px;
+            height: 40px;
+            font-size: 16px;
+            border-radius:25px;
+        }
+            #btn2:hover {
+                background: #eaf4fe;
+            }
+        .row .ss img {
+            height: 32px;
+            width: 75%;
+            
+        }
+        .hero{
+           
+            padding-top:0px;
+        }
+        .hero img{
+            height:650px;
+            width:125%;
+            margin-bottom:40px;
+        }
+        
+            .uu{
+                width:100%;
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                padding-top:20px;
+                
+            }
+            
+        
+        #input1 {
+            width: 100%;
+            height: 50px;
+            outline-color: #2977c9;
+          
+            
+        }
+        #input2 {
+            width: 100%;
+            height: 50px;
+            outline-color: #2977c9;
+            margin-top:10px;
+        }
+        #input3 {
+            width: 100%;
+            height: 50px;
+            background-color: #0a66c2;
+             outline-color: #2977c9;
+            margin-top: 25px;
+            border:none;
+            border-radius:25px;
+        }
+        #ac {
+            color: #0a66ce;
+            text-underline-position:below;
+
+        }
+    </style>
+</body>
+
+</html>
+
